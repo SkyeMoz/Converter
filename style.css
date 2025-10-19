@@ -1,16 +1,31 @@
-/* Minimal dark style + chest UI */
+/* Minimal dark style + mobile controls + disable scroll & overscroll */
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial; background:#0b0b10; color:#e6eef8}
-#game{display:block;width:100vw;height:100vh;background:linear-gradient(180deg,#0b0b10,#071021);cursor:crosshair}
-#ui{position:fixed;left:0;top:0;width:100%;pointer-events:none}
+html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial; background:#0b0b10; color:#e6eef8; overscroll-behavior-y:none; touch-action:none; -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color: transparent;}
+body { overflow:hidden; } /* hide scrollbars, disable scrolling */
+::-webkit-scrollbar{display:none}
+
+#game{display:block; width:100vw; height:100vh; background:linear-gradient(180deg,#0b0b10,#071021); cursor:crosshair; touch-action:none}
+#ui{position:fixed;left:0;top:0;width:100%;pointer-events:none; z-index:40}
 #hud{display:flex;gap:12px;padding:12px}
-#hud > div{background:rgba(0,0,0,0.35);padding:8px 12px;border-radius:8px;font-weight:600;color:#dbe9ff}
+#hud > div{background:rgba(0,0,0,0.35);padding:8px 12px;border-radius:8px;font-weight:600;color:#dbe9ff; pointer-events:auto}
 #centerHint{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;padding:8px 12px;background:rgba(0,0,0,0.35);border-radius:8px;color:#bcdcff;font-size:14px}
 #interactHint{position:fixed;left:50%;transform:translateX(-50%);bottom:68px;padding:8px 12px;background:rgba(0,0,0,0.45);border-radius:8px;color:#ffefc4;font-size:15px;pointer-events:none}
 .kbd{background:#222;padding:3px 7px;border-radius:4px;border:1px solid rgba(255,255,255,0.06);font-weight:800;color:#fff}
 
-/* Chest UI Modal */
-#chestUI{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.75));pointer-events:auto}
+/* Mobile control layout */
+#mobileControls{position:fixed;inset:0;pointer-events:none;z-index:50}
+#joyOuter{position:fixed;left:18px;bottom:18px;width:130px;height:130px;border-radius:999px;pointer-events:auto;touch-action:none;display:flex;align-items:center;justify-content:center}
+#joyBg{position:absolute;width:130px;height:130px;opacity:0.9}
+#joyThumb{position:absolute;width:56px;height:56px;left:37px;top:37px;touch-action:none;user-select:none}
+#fireBtn{position:fixed;right:18px;bottom:18px;width:96px;height:96px;border-radius:999px;border:0;background:linear-gradient(180deg,#ff8a5a,#ff5a3c);font-weight:900;font-size:18px;pointer-events:auto}
+#reloadBtn{position:fixed;right:18px;bottom:128px;width:68px;height:42px;border-radius:10px;border:0;background:#2a9df4;color:white;font-weight:800;pointer-events:auto}
+.mobileBtn{pointer-events:auto}
+.small{width:68px;height:42px}
+
+#weaponsRow{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;pointer-events:auto;display:flex;gap:6px}
+.wepBtn{background:rgba(255,255,255,0.06);border:0;padding:8px 10px;border-radius:8px;color:#e6eef8;font-weight:900;pointer-events:auto}
+
+#chestUI{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.75));pointer-events:auto;z-index:60}
 #chestUI.hidden{display:none}
 .chestCard{width:320px;max-width:90%;background:#071829;padding:18px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
 .chestCard h2{margin:0 0 8px;color:#ffd47a}
@@ -20,14 +35,21 @@ html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Robo
 .chestBtns{display:flex;gap:8px;justify-content:flex-end}
 .chestBtns button{padding:8px 12px;border-radius:8px;border:0;background:#2a9df4;color:white;font-weight:700;cursor:pointer}
 
-#gameOver{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.8));pointer-events:auto}
+#damageOverlay{position:fixed;inset:0;background:rgba(255,20,20,0.35);pointer-events:none;z-index:70;mix-blend-mode:screen;opacity:0;transition:opacity 220ms ease}
+#damageOverlay.show{opacity:1; transition:opacity 300ms ease-out}
+
+/* Game over */
+#gameOver{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.8));pointer-events:auto;z-index:100}
 #gameOver.hidden{display:none}
 #gameOver h1{color:#ff6b6b;margin:0 0 8px;font-size:48px;letter-spacing:2px}
 #gameOver button{padding:10px 18px;border-radius:8px;border:0;background:#2a9df4;color:white;font-weight:700;cursor:pointer}
 #finalScore{color:#e6eef8;margin-bottom:12px}
 
-/* small mobile hint */
 @media (max-width:600px){
   .grid{grid-template-columns:repeat(3,1fr)}
   .chestCard{width:92%}
+  #joyOuter{width:110px;height:110px}
+  #joyBg{width:110px;height:110px}
+  #joyThumb{width:50px;height:50px}
+  #fireBtn{width:84px;height:84px}
 }
