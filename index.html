@@ -1,29 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Script Obsfucator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>COD with Bow — Demo</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <canvas id="particles"></canvas>
-  
-  <div class="container">
-    <h1 class="title">Scriptz Obsfucator</h1>
-    <p class="sub">By SkyeMoz — Here to protect you from those stealers!</p>
-
-    <textarea id="input" placeholder="Paste your Luau script here..."></textarea>
-
-    <div class="btn-row">
-      <button id="obfuscate">Obfuscate</button>
-      <button id="clear">Clear</button>
+  <div id="ui">
+    <div id="hud">
+      <div id="score">Score: 0</div>
+      <div id="health">HP: 100</div>
+      <div id="ammo">Arrows: ∞</div>
     </div>
-
-    <textarea id="output" placeholder="Protected script will appear here..." readonly></textarea>
+    <div id="centerHint">Aim with mouse • WASD to move • Left-click to shoot</div>
+    <div id="gameOver" class="hidden">
+      <h1>YOU DIED</h1>
+      <div id="finalScore">Score: 0</div>
+      <button id="restartBtn">Restart</button>
+    </div>
   </div>
-
-  <script src="particles.js"></script>
+  <canvas id="game"></canvas>
   <script src="script.js"></script>
 </body>
 </html>
