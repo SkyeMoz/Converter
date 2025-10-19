@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>COD with Bow — Demo</title>
+  <title>COD with Bow — Demo (Chest System)</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,9 +11,23 @@
     <div id="hud">
       <div id="score">Score: 0</div>
       <div id="health">HP: 100</div>
-      <div id="ammo">Arrows: ∞</div>
+      <div id="inventorySummary">Coins: 0 • Keys: 0 • Potions: 0</div>
     </div>
     <div id="centerHint">Aim with mouse • WASD to move • Left-click to shoot</div>
+    <div id="interactHint" class="hidden">Press <span class="kbd">E</span> to open chest</div>
+
+    <!-- Chest UI Modal -->
+    <div id="chestUI" class="hidden">
+      <div class="chestCard">
+        <h2 id="chestTitle">Chest</h2>
+        <div id="chestItems" class="grid"></div>
+        <div class="chestBtns">
+          <button id="takeAllBtn">Take All</button>
+          <button id="closeChestBtn">Close</button>
+        </div>
+      </div>
+    </div>
+
     <div id="gameOver" class="hidden">
       <h1>YOU DIED</h1>
       <div id="finalScore">Score: 0</div>
