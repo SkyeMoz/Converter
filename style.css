@@ -1,0 +1,97 @@
+/* === General Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+body {
+  background: black;
+  color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* === Particles Canvas === */
+canvas#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* === Layout Container === */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* === Titles === */
+.title {
+  font-size: 2rem;
+  margin-bottom: 5px;
+  color: #ff4444;
+}
+
+.sub {
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+/* === Textareas === */
+textarea {
+  width: 100%;
+  height: 120px;
+  background: #111;
+  color: #0f0;
+  border: none;
+  outline: none;
+  padding: 10px;
+  resize: none;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+textarea:focus {
+  outline: none !important;
+  box-shadow: 0 0 8px red;
+}
+
+/* === Button Row === */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* === Buttons === */
+button {
+  flex: 1;
+  background: linear-gradient(45deg, #a00, #f22);
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.15s ease, background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #c00, #f55);
+}
+
+button:active {
+  transform: scale(0.9);
+}
