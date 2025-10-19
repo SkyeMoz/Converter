@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>COD with Bow — Demo (Chest System)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <title>COD with Bow — Mobile Survival</title>
   <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#071021" />
 </head>
 <body>
   <div id="ui">
@@ -12,9 +13,28 @@
       <div id="score">Score: 0</div>
       <div id="health">HP: 100</div>
       <div id="inventorySummary">Coins: 0 • Keys: 0 • Potions: 0</div>
+      <div id="weaponInfo">Weapon: Bow • Ammo: ∞</div>
     </div>
-    <div id="centerHint">Aim with mouse • WASD to move • Left-click to shoot</div>
+
+    <div id="centerHint">Aim with mouse • WASD to move • Left-click / tap to shoot</div>
     <div id="interactHint" class="hidden">Press <span class="kbd">E</span> to open chest</div>
+
+    <!-- Mobile controls -->
+    <div id="mobileControls">
+      <div id="joyOuter">
+        <img id="joyBg" src="settings/joystick_bg.png" alt="" />
+        <img id="joyThumb" src="settings/joystick_thumb.png" alt="" />
+      </div>
+      <button id="fireBtn" class="mobileBtn">FIRE</button>
+      <button id="reloadBtn" class="mobileBtn small">RELOAD</button>
+      <div id="weaponsRow">
+        <button class="wepBtn" data-wep="bow">1</button>
+        <button class="wepBtn" data-wep="crossbow">2</button>
+        <button class="wepBtn" data-wep="pistol">3</button>
+        <button class="wepBtn" data-wep="shotgun">4</button>
+        <button class="wepBtn" data-wep="minigun">5</button>
+      </div>
+    </div>
 
     <!-- Chest UI Modal -->
     <div id="chestUI" class="hidden">
@@ -28,12 +48,15 @@
       </div>
     </div>
 
+    <div id="damageOverlay" class="hidden"></div>
+
     <div id="gameOver" class="hidden">
       <h1>YOU DIED</h1>
       <div id="finalScore">Score: 0</div>
       <button id="restartBtn">Restart</button>
     </div>
   </div>
+
   <canvas id="game"></canvas>
   <script src="script.js"></script>
 </body>
