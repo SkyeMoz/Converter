@@ -1,4 +1,4 @@
-/* Minimal dark style */
+/* Minimal dark style + chest UI */
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial; background:#0b0b10; color:#e6eef8}
 #game{display:block;width:100vw;height:100vh;background:linear-gradient(180deg,#0b0b10,#071021);cursor:crosshair}
@@ -6,8 +6,28 @@ html,body{height:100%;margin:0;font-family:ui-sans-serif,system-ui,Segoe UI,Robo
 #hud{display:flex;gap:12px;padding:12px}
 #hud > div{background:rgba(0,0,0,0.35);padding:8px 12px;border-radius:8px;font-weight:600;color:#dbe9ff}
 #centerHint{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;padding:8px 12px;background:rgba(0,0,0,0.35);border-radius:8px;color:#bcdcff;font-size:14px}
+#interactHint{position:fixed;left:50%;transform:translateX(-50%);bottom:68px;padding:8px 12px;background:rgba(0,0,0,0.45);border-radius:8px;color:#ffefc4;font-size:15px;pointer-events:none}
+.kbd{background:#222;padding:3px 7px;border-radius:4px;border:1px solid rgba(255,255,255,0.06);font-weight:800;color:#fff}
+
+/* Chest UI Modal */
+#chestUI{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.75));pointer-events:auto}
+#chestUI.hidden{display:none}
+.chestCard{width:320px;max-width:90%;background:#071829;padding:18px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
+.chestCard h2{margin:0 0 8px;color:#ffd47a}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 12px}
+.itemSlot{background:rgba(255,255,255,0.03);border-radius:8px;padding:8px;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#dbe9ff;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+.itemSlot small{display:block;font-weight:500;color:#bcdcff;margin-top:6px;font-size:12px}
+.chestBtns{display:flex;gap:8px;justify-content:flex-end}
+.chestBtns button{padding:8px 12px;border-radius:8px;border:0;background:#2a9df4;color:white;font-weight:700;cursor:pointer}
+
 #gameOver{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.8));pointer-events:auto}
 #gameOver.hidden{display:none}
 #gameOver h1{color:#ff6b6b;margin:0 0 8px;font-size:48px;letter-spacing:2px}
 #gameOver button{padding:10px 18px;border-radius:8px;border:0;background:#2a9df4;color:white;font-weight:700;cursor:pointer}
 #finalScore{color:#e6eef8;margin-bottom:12px}
+
+/* small mobile hint */
+@media (max-width:600px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .chestCard{width:92%}
+}
